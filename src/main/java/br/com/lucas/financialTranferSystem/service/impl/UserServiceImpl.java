@@ -1,9 +1,11 @@
 package br.com.lucas.financialTranferSystem.service.impl;
 
+import br.com.lucas.financialTranferSystem.exception.ResourceNotFoundException;
 import br.com.lucas.financialTranferSystem.repository.UserRepository;
 import br.com.lucas.financialTranferSystem.service.UserService;
 import br.com.lucas.financialTranferSystem.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,29 +33,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity createUser(UserEntity userEntity) {
+        return this.userRepository.save(userEntity);
+    }
+
+    @Override
     public UserEntity findUserById(Integer id) {
         Optional<UserEntity> userOptional = this.userRepository.findById(id);
         return userOptional.orElseGet(UserEntity::new);
     }
 
     @Override
-    public String updateUser(UserEntity user) {
-        try {
-            this.userRepository.save(user);
-            return "Update success";
-        } catch (Exception e) {
-            return "Not possible to update User "+user.getName()+" information";
-        }
+    public UserEntity updateUser(UserEntity userEntity) {
+       return this.userRepository.findById(userEntity.getId()).map(user -> {
+           user.setId(userEntity.getId());
+           user.setName(userEntity.getName());
+           return this.userRepository.save(user);
+       }).orElseThrow(() -> new ResourceNotFoundException("User Id "+ userEntity.getId() + " not found"));
 
     }
 
     @Override
-    public String deleteUser(UserEntity user) {
-        try{
+    public ResponseEntity<?> deleteUser(UserEntity userEntity) {
+        return this.userRepository.findById(userEntity.getId()).map(user -> {
             this.userRepository.delete(user);
-            return "Delete complete";
-        } catch (Exception e) {
-            return "User "+user.getName()+" not deleted";
-        }
+            return ResponseEntity.ok().build();
+                }).orElseThrow(() -> new ResourceNotFoundException("UserId " + userEntity.getId() + " not found"));
     }
 }

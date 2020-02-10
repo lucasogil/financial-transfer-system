@@ -1,6 +1,7 @@
 package br.com.lucas.financialTranferSystem.service;
 
 import br.com.lucas.financialTranferSystem.entity.UserEntity;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -10,10 +11,12 @@ public interface UserService {
 
     public List<UserEntity> getAllUsers();
 
+    public UserEntity createUser(UserEntity userEntity);
+
     public UserEntity findUserById(Integer id);
 
-    public String updateUser(UserEntity user);
+    public UserEntity updateUser(UserEntity userEntity);
 
-    public String deleteUser(UserEntity user);
+    public ResponseEntity<?> deleteUser(UserEntity userEntity);
 
 }
