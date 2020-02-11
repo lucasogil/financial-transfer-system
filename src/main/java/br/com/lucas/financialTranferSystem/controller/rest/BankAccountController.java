@@ -1,4 +1,4 @@
-package br.com.lucas.financialTranferSystem.controller;
+package br.com.lucas.financialTranferSystem.controller.rest;
 
 import br.com.lucas.financialTranferSystem.entity.BankAccountEntity;
 import br.com.lucas.financialTranferSystem.entity.UserEntity;
