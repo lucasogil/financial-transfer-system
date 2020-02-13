@@ -21,6 +21,11 @@ public class BankAccountController {
         return this.service.getAllBankAccountsByUserId(userId);
     }
 
+    @GetMapping("/getAllBankAccounts")
+    public List<BankAccountEntity> getAllBankAccounts(){
+        return this.service.getAllBankAccounts();
+    }
+
     @PostMapping("/createBankAccount/{userId}")
     public BankAccountEntity createBankAccount(@PathVariable Integer userId, @RequestBody BankAccountEntity bankAccountEntity) {
         return this.service.createBankAccount(userId, bankAccountEntity);

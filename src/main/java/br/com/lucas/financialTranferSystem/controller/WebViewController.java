@@ -23,7 +23,7 @@ public class WebViewController {
     @Autowired
     private BankAccountService bankAccountService;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home(Map<String, Object> model) {
 
         List<UserEntity> allUsers = this.userService.getAllUsers();
@@ -58,15 +58,20 @@ public class WebViewController {
 
     @GetMapping("conta/{accountId}")
     public String account(Model model, @PathVariable(value="accountId") Integer accountId) {
-        BankAccountEntity account = bankAccountService.findBankAccountById(accountId);
+        BankAccountEntity accountOrigin = bankAccountService.findBankAccountById(accountId);
+        List<BankAccountEntity> allAccounts = bankAccountService.getAllBankAccounts();
 
-        if (null != account){
+        if (null != accountOrigin){
 
-            model.addAttribute("account", account);
-            model.addAttribute("user", account.getUser());
+
+            model.addAttribute("account", accountOrigin);
+            model.addAttribute("user", accountOrigin.getUser());
+
+            if( (null != allAccounts) && (!allAccounts.isEmpty()) ) {
+                model.addAttribute("allAccounts", allAccounts);
+            }
 
             return "account";
-
         } else {
             model.addAttribute("errorMessage", "Usuário não encontrado!");
             return "error";

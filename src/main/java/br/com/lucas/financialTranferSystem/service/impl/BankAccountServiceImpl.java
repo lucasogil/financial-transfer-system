@@ -1,6 +1,7 @@
 package br.com.lucas.financialTranferSystem.service.impl;
 
 import br.com.lucas.financialTranferSystem.entity.BankAccountEntity;
+import br.com.lucas.financialTranferSystem.entity.UserEntity;
 import br.com.lucas.financialTranferSystem.exception.ResourceNotFoundException;
 import br.com.lucas.financialTranferSystem.repository.BankAccountRepository;
 import br.com.lucas.financialTranferSystem.repository.UserRepository;
@@ -24,6 +25,11 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public List<BankAccountEntity> getAllBankAccountsByUserId(Integer userId) {
         return this.bankAccountRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<BankAccountEntity> getAllBankAccounts() {
+        return (List<BankAccountEntity>) this.bankAccountRepository.findAll();
     }
 
     @Override

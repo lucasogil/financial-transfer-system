@@ -20,7 +20,7 @@
     <div class=" col-md-6 col-md-offset-3">
         <h1 class="text-center">Sistemas de Transferencia Finaceiras</h1>
         <h2 >Lista de Usuarios</h2>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped">
             <thead style="background-color: lightslategrey" >
             <tr>
                 <th scope="col">#</th>
@@ -34,7 +34,10 @@
                         <tr>
                             <th scope="row"><c:out value="${user.id}" /> </th>
                             <td><c:out value="${user.name}" /></td>
-                            <td><a class="btn btn-primary btn-sm" href="../usuario/${user.id}" style="background-color: lightslategrey; border: lightslategrey" >Selecionar</a> </td>
+                            <td>
+                                <a class="btn btn-primary btn-xm" href="../usuario/${user.id}" style="background-color: lightslategrey; border: lightslategrey" >Realizar Transferencia</a>
+                                <a class="btn btn-primary btn-xm" href="../usuario/${user.id}/history" style="background-color: lightslategrey; border: lightslategrey" >Historico</a>
+                            </td>
                         </tr>
                     </tbody>
                 </c:forEach>

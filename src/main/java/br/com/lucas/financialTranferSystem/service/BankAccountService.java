@@ -10,6 +10,8 @@ public interface BankAccountService {
 
     public List<BankAccountEntity> getAllBankAccountsByUserId(Integer userId);
 
+    public List<BankAccountEntity> getAllBankAccounts();
+
     public BankAccountEntity createBankAccount(Integer userId, BankAccountEntity bankAccountEntity);
 
     public BankAccountEntity findBankAccountById(Integer id);

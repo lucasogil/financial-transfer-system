@@ -25,14 +25,27 @@
 <body style="background-color: #B3C8C8">
     <h3 class="text-center">Ações da Conta</h3>
     <div class=" col-md-6 col-md-offset-3" style="background-color: #f2f2f2" id="bordersdiv">
-        <h4>Usuario: ${user.name}</h4>
+        <h4><b>Usuario:</b> ${user.name}</h4>
         <div>
+            <h4><b>Conta de Origem</b></h4>
             <h5><b>Numero da Conta: </b> <c:out value="${account.id}" /> </h5>
             <h5><b>Tipo da Conta: </b> <c:out value="${account.type}" /> </h5>
             <h5><b>Saldo Disponível:</b> R$ <c:out value="${account.balance}" /> </h5>
             <br>
-            <a class="btn btn-primary btn-lg" style="background-color: lightslategrey; border: lightslategrey">Realizar uma Transferencia</a>
-            <a class="btn btn-primary btn-lg" style="background-color: lightslategrey; border: lightslategrey">Consultar Agendamentos</a>
+            <h4 class="title">Selecione uma Conta de Destino</h4>
+            <div >
+                <c:if test="${not empty allAccounts}">
+                    <c:forEach items="${allAccounts}" var="account">
+                        <div class="list-group" style="background-color: #ffffff">
+                            <a class="list-group-item" style="border: #ffffff">
+                                <h5><b>Numero da Conta: </b> <c:out value="${account.id}" /> </h5>
+                                <h5><b>Dono da Conta: </b> <c:out value="${account.user.name}" /> </h5>
+                                <a class="btn btn-primary btn-sm" href="" style="background-color: lightslategrey; border: lightslategrey">Selecionar</a>
+                            </a>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            </div>
             <br>
         </div>
     </div>
