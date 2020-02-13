@@ -1,5 +1,6 @@
 package br.com.lucas.financialTranferSystem.controller;
 
+import br.com.lucas.financialTranferSystem.entity.BankAccountEntity;
 import br.com.lucas.financialTranferSystem.entity.UserEntity;
 import br.com.lucas.financialTranferSystem.service.BankAccountService;
 import br.com.lucas.financialTranferSystem.service.UserService;
@@ -23,7 +24,7 @@ public class WebViewController {
     private BankAccountService bankAccountService;
 
     @RequestMapping("/")
-    public String index(Map<String, Object> model) {
+    public String home(Map<String, Object> model) {
 
         List<UserEntity> allUsers = this.userService.getAllUsers();
 
@@ -31,17 +32,40 @@ public class WebViewController {
             model.put("allUsers", allUsers);
         }
 
-        return "index";
+        return "home";
     }
 
-    @GetMapping("initial/{userId}")
-    public String home(Model model, @PathVariable(value="userId") Integer userId) {
+    @GetMapping("usuario/{userId}")
+    public String user(Model model, @PathVariable(value="userId") Integer userId) {
         UserEntity user = this.userService.findUserById(userId);
 
         if (null != user){
+
             model.addAttribute("user", user);
-            model.addAttribute("bankAccount", bankAccountService.findBankAccountById(userId));
-            return "home";
+            List<BankAccountEntity> accounts = bankAccountService.getAllBankAccountsByUserId(userId);
+
+            if ( (null != accounts ) && (!accounts.isEmpty()) ) {
+                model.addAttribute("accounts", accounts);
+            }
+
+            return "user";
+
+        } else {
+            model.addAttribute("errorMessage", "Usuário não encontrado!");
+            return "error";
+        }
+    }
+
+    @GetMapping("conta/{accountId}")
+    public String account(Model model, @PathVariable(value="accountId") Integer accountId) {
+        BankAccountEntity account = bankAccountService.findBankAccountById(accountId);
+
+        if (null != account){
+
+            model.addAttribute("account", account);
+            model.addAttribute("user", account.getUser());
+
+            return "account";
 
         } else {
             model.addAttribute("errorMessage", "Usuário não encontrado!");
