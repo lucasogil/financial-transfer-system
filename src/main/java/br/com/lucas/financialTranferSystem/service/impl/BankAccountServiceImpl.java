@@ -1,7 +1,6 @@
 package br.com.lucas.financialTranferSystem.service.impl;
 
 import br.com.lucas.financialTranferSystem.entity.BankAccountEntity;
-import br.com.lucas.financialTranferSystem.entity.UserEntity;
 import br.com.lucas.financialTranferSystem.exception.ResourceNotFoundException;
 import br.com.lucas.financialTranferSystem.repository.BankAccountRepository;
 import br.com.lucas.financialTranferSystem.repository.UserRepository;

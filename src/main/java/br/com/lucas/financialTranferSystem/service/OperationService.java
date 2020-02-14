@@ -9,9 +9,11 @@ public interface OperationService {
 
     public List<OperationEntity> getAllOperationsByUserId(Integer userId);
 
+    public OperationEntity getOperationById(Integer id);
+
     public OperationEntity submitOperation(OperationInfoForm operationInfoForm);
 
-    public OperationEntity getOperationById(Integer id);
+
 
 
 
