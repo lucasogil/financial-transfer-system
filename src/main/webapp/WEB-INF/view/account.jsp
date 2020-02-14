@@ -39,7 +39,7 @@
                         <div class="list-group" style="background-color: #ffffff">
                             <a class="list-group-item" style="border: #ffffff">
                                 <h5><b>Numero da Conta: </b> <c:out value="${account.id}" /> </h5>
-                                <h5><b>Dono da Conta: </b> <c:out value="${account.user.name}" /> </h5>
+                                <h5><b>Nome do Cliente: </b> <c:out value="${account.user.name}" /> </h5>
                                 <a class="btn btn-primary btn-sm" href="" style="background-color: lightslategrey; border: lightslategrey">Selecionar</a>
                             </a>
                         </div>

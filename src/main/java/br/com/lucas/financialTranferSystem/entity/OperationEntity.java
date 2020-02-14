@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,7 +17,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransferActionEntity implements Serializable {
+public class OperationEntity implements Serializable {
 
     private static final long serialVersionUID = -6114821393745011938L;
 
@@ -45,6 +47,10 @@ public class TransferActionEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date schedulingDate;
+
+    @NotNull
+    @Size(max = 200)
+    private String description;
 
 
 }
