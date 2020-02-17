@@ -6,6 +6,7 @@ import br.com.lucas.financial.model.OperationInfoForm;
 import br.com.lucas.financial.repository.BankAccountRepository;
 import br.com.lucas.financial.repository.OperationRepository;
 import br.com.lucas.financial.service.OperationService;
+import br.com.lucas.financial.util.DateUtil;
 import br.com.lucas.financial.util.OperationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,12 @@ public class OperationServiceImpl implements OperationService {
         Optional<BankAccountEntity> originAccount = this.bankAccountRepository.findById(operationInfoForm.getOriginAccountId());
         Optional<BankAccountEntity> destinationAccount = this.bankAccountRepository.findById(operationInfoForm.getDestinationAccountId());
 
-        OperationEntity operation = OperationUtil.applyTaxFeesForOperation(originAccount, destinationAccount, operationInfoForm.getSchedulingDate(), operationInfoForm.getValue());
+        final long daysOperation = DateUtil.getDaysOperation(operationInfoForm.getSchedulingDate());
 
-        return this.operationRepository.save(operation);
+//        OperationEntity operation = OperationUtil.applyTaxFeesForOperation(originAccount, destinationAccount, operationInfoForm.getSchedulingDate(), operationInfoForm.getValue());
+
+//        return this.operationRepository.save(operation);
+        return null;
     }
 
 
