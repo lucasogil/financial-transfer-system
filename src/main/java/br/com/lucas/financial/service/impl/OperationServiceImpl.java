@@ -2,6 +2,7 @@ package br.com.lucas.financial.service.impl;
 
 import br.com.lucas.financial.entity.BankAccountEntity;
 import br.com.lucas.financial.entity.OperationEntity;
+import br.com.lucas.financial.entity.UserEntity;
 import br.com.lucas.financial.model.OperationInfoForm;
 import br.com.lucas.financial.repository.BankAccountRepository;
 import br.com.lucas.financial.repository.OperationRepository;
@@ -31,20 +32,27 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     public OperationEntity getOperationById(Integer id) {
-        return null;
+        Optional<OperationEntity> operationOptional = this.operationRepository.findById(id);
+        return operationOptional.orElseGet(OperationEntity::new);
     }
 
     @Override
     public OperationEntity submitOperation(OperationInfoForm operationInfoForm) {
-
-        Optional<BankAccountEntity> originAccount = this.bankAccountRepository.findById(operationInfoForm.getOriginAccountId());
-        Optional<BankAccountEntity> destinationAccount = this.bankAccountRepository.findById(operationInfoForm.getDestinationAccountId());
-
-        final long daysOperation = DateUtil.getDaysOperation(operationInfoForm.getSchedulingDate());
-
-//        OperationEntity operation = OperationUtil.applyTaxFeesForOperation(originAccount, destinationAccount, operationInfoForm.getSchedulingDate(), operationInfoForm.getValue());
-
+//
+//        Optional<BankAccountEntity> originAccount = this.bankAccountRepository.findById(operationInfoForm.getOriginAccountId());
+//        Optional<BankAccountEntity> destinationAccount = this.bankAccountRepository.findById(operationInfoForm.getDestinationAccountId());
+//
+//        final long daysOperation = DateUtil.getDaysOperation(operationInfoForm.getSchedulingDate());
+//
+//        try {
+//            OperationEntity operation = OperationUtil.applyTaxFeesForOperation(daysOperation, );
+//
+//        } catch (Exception e ) {
+//
+//        }
+//
 //        return this.operationRepository.save(operation);
+
         return null;
     }
 

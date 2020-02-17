@@ -48,9 +48,9 @@ public class OperationEntity implements Serializable {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date schedulingDate;
 
-    @NotNull
-    @Size(max = 200)
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "operation_tax_rules_db_id")
+    private OperationTaxRulesEntity operationTaxRulesEntity;
 
 
 

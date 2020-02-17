@@ -1,28 +1,16 @@
 package br.com.lucas.financial.util;
 
-import br.com.lucas.financial.entity.BankAccountEntity;
-import br.com.lucas.financial.entity.OperationEntity;
+import br.com.lucas.financial.entity.OperationTaxRulesEntity;
+import br.com.lucas.financial.repository.OperationTaxRulesRepository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 public class OperationUtil {
 
-
-
-    public static OperationEntity applyTaxFeesForOperation(Optional<BankAccountEntity> originAccount,
-                                                           Optional<BankAccountEntity> destinationAccount,
-                                                           Date schedulingDate,
-                                                           String value) throws ParseException {
-
-//        long daysOperation = DateUtil.getDaysOperation(schedulingDate);
-
+    public static OperationTaxRulesEntity selectRule(List<OperationTaxRulesEntity> allRules) {
+//        allRules.stream().filter()
         return null;
     }
-
 
 
 }
