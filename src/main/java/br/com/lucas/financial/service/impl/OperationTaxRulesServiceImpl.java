@@ -33,7 +33,7 @@ public class OperationTaxRulesServiceImpl implements OperationTaxRulesService {
     @Override
     public OperationTaxRulesEntity findOperationTaxRule(Long daysBetweenInterval) {
         List<OperationTaxRulesEntity> allRules = getAllRules();
-        return OperationUtil.selectRule(allRules);
+        return OperationUtil.selectRule(daysBetweenInterval, allRules);
     }
 
 }
